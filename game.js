@@ -17,15 +17,23 @@ $(document).keypress(function () {
     }
 })
 
+$("body").click(function () {
+    if (!started) {
+        $("#level-title").text("Level " + level);
+        nextSequence();
+        started = true;
+    }
+})
+
 $(".btn").click(function () {
+    if (started == true){
+        var userChosenColour = $(this).attr("id");
+        userClickedPattern.push(userChosenColour);
 
-    var userChosenColour = $(this).attr("id");
-    userClickedPattern.push(userChosenColour);
-
-    playSound(userChosenColour);
-    animatePress(userChosenColour);
-    checkAnswer(userClickedPattern.length - 1);
-
+        playSound(userChosenColour);
+        animatePress(userChosenColour);
+        checkAnswer(userClickedPattern.length - 1);
+    }
 });
 
 
